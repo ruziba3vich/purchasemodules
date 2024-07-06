@@ -1,0 +1,27 @@
+syntax = "proto3";
+
+
+message PurchaseProductsRequest {
+    repeated RemoveProductsRequest products = 1;
+}
+
+message PurchaseProductsResponse {
+    string message = 1;
+}
+
+message RemoveProductsRequest {
+    string product_id = 1;
+    int32 number_of_products = 2;
+    string client_id = 3;
+    int64 price = 4;
+}
+
+message RemoveProductsResponse {
+    string message = 1;
+    bool error_occured = 2;
+}
+
+service PurchaseService {
+    rpc RemoveProducts(RemoveProductsRequest) returns (RemoveProductsResponse);
+    rpc PurchaseProducts(PurchaseProductsRequest) returns (PurchaseProductsResponse);
+}
